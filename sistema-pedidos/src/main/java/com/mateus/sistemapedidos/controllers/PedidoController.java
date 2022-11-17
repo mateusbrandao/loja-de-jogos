@@ -32,13 +32,13 @@ public class PedidoController {
 		return ResponseEntity.ok(listaJogos);
 	}
 	
-	@GetMapping(value = "listar-jogos-disponiveis")
-	public ResponseEntity<List<JogoDto>> listarJogosDisponiveis(){
-		
-		List<JogoDto> listaJogos= jogoService.buscarJogosDisponiveis();
-		
-		return ResponseEntity.ok(listaJogos);
-	}
+//	@GetMapping(value = "listar-jogos-disponiveis")
+//	public ResponseEntity<List<JogoDto>> listarJogosDisponiveis(){
+//		
+//		List<JogoDto> listaJogos= jogoService.buscarJogosDisponiveis();
+//		
+//		return ResponseEntity.ok(listaJogos);
+//	}
 	
 	
 }
