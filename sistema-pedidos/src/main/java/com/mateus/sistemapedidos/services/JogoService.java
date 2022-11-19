@@ -27,11 +27,12 @@ public class JogoService {
 		
 	}
 
-//	public List<JogoDto> buscarJogosDisponiveis() {
-//		
-//		return jogoRepository.buscarJogosDisponiveis().stream()
-//				.map(j -> modelMapper.map(j, JogoDto.class))
-//				.collect(Collectors.toList());
-//	}
+	
+	public List<JogoDto> buscarJogosDisponiveis() {
+		
+		return jogoRepository.buscarJogosDisponiveis().stream()
+				.map(j -> modelMapper.map(j, JogoDto.class))
+				.collect(Collectors.toList());
+	}
 	
 }
