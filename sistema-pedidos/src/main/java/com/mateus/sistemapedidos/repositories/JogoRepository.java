@@ -12,5 +12,7 @@ public interface JogoRepository extends JpaRepository<Jogo, Long> {
 	@Query(value = "select j from Jogo j where j.estoque.totalEstoque"
 			+ " > j.estoque.totalReservado")
 	List<Jogo> buscarJogosDisponiveis();
+	
+	Jogo findByNome(String nome);
 
 }
