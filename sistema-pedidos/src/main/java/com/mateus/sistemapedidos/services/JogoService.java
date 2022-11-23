@@ -31,16 +31,14 @@ public class JogoService {
 		
 		return jogoRepository.findAll().stream()
 				.map(j -> modelMapper.map(j, JogoDto.class))
-				.collect(Collectors.toList());
-		
+				.toList();
 	}
-
 	
 	public List<JogoDto> buscarJogosDisponiveis() {
 		
 		return jogoRepository.buscarJogosDisponiveis().stream()
 				.map(j -> modelMapper.map(j, JogoDto.class))
-				.collect(Collectors.toList());
+				.toList();
 	}
 
 

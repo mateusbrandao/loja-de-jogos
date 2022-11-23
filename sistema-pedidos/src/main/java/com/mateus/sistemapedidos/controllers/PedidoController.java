@@ -2,6 +2,7 @@ package com.mateus.sistemapedidos.controllers;
 
 import java.util.List;
 
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,9 @@ public class PedidoController {
 
 	@Autowired
 	JogoService jogoService;
+	
+	@Autowired
+	private RabbitTemplate rabbitTemplate;
 
 	@GetMapping()
 	public ResponseEntity<String> test() {
@@ -55,6 +59,9 @@ public class PedidoController {
 					.status(HttpStatus.NOT_FOUND)
 					.body(e.getMessage());
 		}
+		
+		
+		rabbitTemplate.convertAndSend("pedidos","pagamento.novo", nomeJogo);
 
 		return ResponseEntity.ok(respostaPedido);
 	}
