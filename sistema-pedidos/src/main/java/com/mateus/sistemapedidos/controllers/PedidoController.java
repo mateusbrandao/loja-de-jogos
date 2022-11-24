@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.mateus.sistemapedidos.dto.JogoDto;
+import com.mateus.sistemapedidos.model.Pedido;
 import com.mateus.sistemapedidos.services.JogoService;
 
 @RestController
@@ -48,7 +49,8 @@ public class PedidoController {
 	}
 
 	@PostMapping(value = "comprar-jogo")
-	public ResponseEntity<String> comprarJogo(@RequestParam(value = "nomeJogo") String nomeJogo) {
+	public ResponseEntity<String> comprarJogo(@RequestParam(value = "nomeJogo") String nomeJogo,
+			@RequestParam(value = "idCliente") int idCliente) {
 
 		String respostaPedido = "";
 
@@ -60,8 +62,10 @@ public class PedidoController {
 					.body(e.getMessage());
 		}
 		
+		Pedido pedido = new Pedido(nomeJogo, idCliente);
 		
-		rabbitTemplate.convertAndSend("pedidos","pagamento.novo", nomeJogo);
+		
+		rabbitTemplate.convertAndSend("pedidos","pagamento.novo", pedido);
 
 		return ResponseEntity.ok(respostaPedido);
 	}
